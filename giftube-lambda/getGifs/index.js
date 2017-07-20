@@ -15,6 +15,7 @@ exports.handler = (event, context, callback) => {
          var gif = {};
          gif.id = item.key.S;
          gif.title = item.user_id.S + "-" + item.date.S;
+         gif.relativeUrl = item.relative_url.S;
          //gif.url = item.url.S;
          gifs.push(gif);
       });

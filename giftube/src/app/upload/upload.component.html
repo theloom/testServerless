@@ -1,3 +1,9 @@
+<div class="col-xs-12 col-md-9">
+  <div *ngIf="displayAddSuccess" class="alert alert-success box-msg" role="alert">
+    <strong>Image</strong> was successfully uploaded.
+  </div>
+</div>
+
 <p>
   <input type="file" accept="image/gif" (change)="upload($event)" />
 </p>

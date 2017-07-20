@@ -35,13 +35,11 @@ export class UploadComponent implements OnInit {
       },
     };
 
-    s3.putObject()
-
     s3.putObject(params, function (err, data) {
       if (err) {
         alert('Error when uploading to s3'); console.error(err);
       } else {
-        alert('Uploaded to S3 successfully.');
+        this.onSuccessfulAdd(data);
       }
     });
   }
