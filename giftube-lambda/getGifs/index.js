@@ -1,15 +1,23 @@
 'use strict';
 
-var faker = require('Faker')
+const aws = require('aws-sdk');
+const s3 = new aws.S3({ apiVersion: '2006-03-01' });
+var dynamodb = new aws.DynamoDB({ apiVersion: '2012-08-10' });
 
 exports.handler = (event, context, callback) => {
-   var gifs = [];
-   for (var i = 0; i < 10; i++) {
-      var gif = {};
-      gif.id = faker.random.number(100);
-      gif.title = faker.Lorem.sentences(1);
-      gif.url = faker.Image.imageUrl(100, 100, 'sports') + "?" + faker.random.number(200);
-      gifs.push(gif);
+
+   var params = {
+      TableName: "gifTubeGifs",
    }
-   callback(null, gifs);
+
+   dynamodb.scan(params, (err, data) => {
+      var gifs = []; data.Items.forEach((item) => {
+         var gif = {};
+         gif.id = item.key.S;
+         gif.title = item.user_id.S + "-" + item.date.S;
+         //gif.url = item.url.S;
+         gifs.push(gif);
+      });
+      callback(null, gifs);
+   });
 }

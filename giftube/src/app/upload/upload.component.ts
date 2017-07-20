@@ -26,14 +26,16 @@ export class UploadComponent implements OnInit {
     var s3 = new AWS.S3({ credentials: awsCreds, region: 'us-east-1' });
     var params = {
       Bucket: 'jd.giftube.gifs',
-      Key: 'gifs/' + file.name,
+      Key: file.name,
       ACL: 'public-read',
       ContentType: 'image/gif',
       Body: file,
       Metadata: {
-        user_id: localStorage.getItem('user_id')
+        //user_id: localStorage.getItem('user_id')
       },
     };
+
+    s3.putObject()
 
     s3.putObject(params, function (err, data) {
       if (err) {

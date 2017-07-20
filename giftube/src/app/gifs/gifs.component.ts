@@ -10,10 +10,13 @@ import { GiftubeApiService } from '../giftube-api.service';
 export class GifsComponent implements OnInit {
   gifs;
 
-  constructor(private _giftubeApiService: GiftubeApiService) { }
+  constructor(private _giftubeApiService: GiftubeApiService) { };
 
   ngOnInit() {
     this._giftubeApiService.fetchGifs().subscribe(gifs => this.gifs = gifs,
       error => console.log('Error fetching gifs'));
   }
+
+  baseUrl: string = 'https://s3.amazonaws.com/jd.giftube.gifs/';
+
 }

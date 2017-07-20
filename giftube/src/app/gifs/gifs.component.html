@@ -1,6 +1,6 @@
 <ol>
   <li *ngFor="let gif of gifs">
     {{gif.title}}<br>
-    <img src={{gif.url}} title="{{ gif.title}} " />
+    <img src="{{baseUrl}}{{gif.id}}" title="{{gif.title}} " />
   </li>
 </ol>
