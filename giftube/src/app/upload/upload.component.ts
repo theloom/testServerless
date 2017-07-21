@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as AWS from "aws-sdk";
+import { GiftubeApiService } from '../giftube-api.service';
 
 @Component({
   selector: 'app-upload',
@@ -9,17 +10,27 @@ import * as AWS from "aws-sdk";
 
 export class UploadComponent implements OnInit {
 
-  constructor() { } ngOnInit() { }
+  constructor(private _giftubeApiService: GiftubeApiService) { };
+
+  ngOnInit() { };
+
+  uploadedGif;
 
   public upload(event) {
 
+
     var file = event.srcElement.files[0]; if ('image/gif' !== file.type) {
       alert('You must choose a gif to upload');
-      return
+      return;
     }
+
+    this._giftubeApiService.createGif(file).subscribe(gif => this.uploadedGif = gif,
+      error => console.log('Error creating gif'));
+
 
     /** HACK: THIS IS NOT A SECURE WAY TO UPLOAD TO S3 **/
     /** THESE CREDENTIALS ARE IN PLAIN TEXT IN THE BROWSER **/
+    /*
     var accessKey = 'AKIAICXX3SMH5JUJLMKA';
     var secretKey = '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';
     var awsCreds = new AWS.Credentials(accessKey, secretKey);
@@ -34,13 +45,15 @@ export class UploadComponent implements OnInit {
         //user_id: localStorage.getItem('user_id')
       },
     };
-
+  
     s3.putObject(params, function (err, data) {
       if (err) {
         alert('Error when uploading to s3'); console.error(err);
       } else {
-        this.onSuccessfulAdd(data);
+        //this.onSuccessfulAdd(data);
+        location.reload();
       }
     });
+    */
   }
 }
