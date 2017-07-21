@@ -1,12 +1,12 @@
 {
-  "name": "gifProcessor",
+  "name": "handleGifCreated",
   "version": "1.0.0",
   "description": "Gif Processor Lambda",
   "repository": {
     "type": "git",
     "url": "https://github.com/cjudd/giftube-lambda"
   },
-  "main": "gifProcessor.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

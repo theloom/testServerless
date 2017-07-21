@@ -5,6 +5,7 @@ const s3 = new aws.S3({ apiVersion: '2006-03-01' });
 var dynamodb = new aws.DynamoDB({ apiVersion: '2012-08-10' });
 
 exports.handler = (event, context, callback) => {
+   console.log("handleGifCreated event: " + JSON.stringify(event));
    const region = event.Records[0].awsRegion;
    const bucket = event.Records[0].s3.bucket.name;
    const key = decodeURIComponent(event.Records[0].s3.object.key.replace(/\+/g, ' '));

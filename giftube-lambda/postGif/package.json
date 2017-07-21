@@ -4,7 +4,7 @@
   "description": "Post Gif Lambda",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cjudd/giftube-lambda"
+    "url": "https://github.com/theloom/serverless"
   },
   "main": "postGif.js",
   "scripts": {
