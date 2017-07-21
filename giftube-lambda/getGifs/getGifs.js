@@ -8,7 +8,7 @@ exports.handler = (event, context, callback) => {
 
    var params = {
       TableName: "gifTubeGifs",
-   }
+   };
 
    dynamodb.scan(params, (err, data) => {
       var gifs = []; data.Items.forEach((item) => {
@@ -21,4 +21,4 @@ exports.handler = (event, context, callback) => {
       });
       callback(null, gifs);
    });
-}
+};
